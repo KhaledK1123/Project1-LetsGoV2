@@ -2,7 +2,6 @@ package com.example.project1_letsgov2
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-class MainActivity : ComponentActivity() {
+class ForgotPassword : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,40 +35,28 @@ class MainActivity : ComponentActivity() {
                 //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                SimpleText("Sport Event App")
+                SimpleText2("Please Create A New Password")
 
-                SimpleText1(displayText = "Create or Find Sporting Events")
+                NewPassword("New Password")
+                NewPasswordBox()
 
-                Username("Please Login: Type Username")
-                UsernameBox()
+                ConfirmPassword("Confirm Password")
+                ConfirmPasswordBox()
 
-                Password("Password")
-                PasswordBox()
-
-                ForgotPasswordButton()
-
-                Login()
-
-                CreateAccountButton()
+                SubmitButton()
             }
         }
     }
 }
 
 @Composable
-fun SimpleText(displayText: String) {
+fun SimpleText2(displayText: String) {
 
-    Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 45.sp, modifier = Modifier.padding(16.dp))
+    Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 35.sp, modifier = Modifier.padding(16.dp))
 }
 
 @Composable
-fun SimpleText1(displayText: String) {
-
-    Text(text = displayText,fontSize = 20.sp)
-}
-
-@Composable
-fun Username(text: String) {
+fun NewPassword(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -85,7 +71,7 @@ fun Username(text: String) {
 }
 
 @Composable
-fun Password(text: String) {
+fun ConfirmPassword(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -101,7 +87,7 @@ fun Password(text: String) {
 
 @ExperimentalFoundationApi
 @Composable
-fun UsernameBox() {
+fun NewPasswordBox() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -118,7 +104,7 @@ fun UsernameBox() {
 
 @ExperimentalFoundationApi
 @Composable
-fun PasswordBox() {
+fun ConfirmPasswordBox() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -135,21 +121,7 @@ fun PasswordBox() {
 }
 
 @Composable
-fun ForgotPasswordButton() {
-
-    val context = LocalContext.current
-    TextButton(
-        onClick = {
-            context.startActivity(Intent(context, ForgotPassword::class.java))
-        },
-        modifier = Modifier.absolutePadding(left = 230.dp)
-    ) {
-        Text("Forgot Password",color = Color(0xFF2196F3))
-    }
-}
-
-@Composable
-fun Login() {
+fun SubmitButton() {
 
     val context = LocalContext.current
     Card(
@@ -158,39 +130,16 @@ fun Login() {
         modifier = Modifier
             .padding(30.dp)
             .width(150.dp)
-            .clickable(onClick = {
-                Toast
-                    .makeText(context, "Welcome", Toast.LENGTH_SHORT)
-                    .show()
+            .clickable(onClick = { context.startActivity(Intent(context, MainActivity::class.java))
             })
     ) {
         Text(
-            text = "Login",
+            text = "Submit",
             textAlign = TextAlign.Center,
             style = TextStyle(
                 fontSize = 20.sp, fontWeight = FontWeight.Bold
             ),
             modifier = Modifier.padding(16.dp)
         )
-    }
-}
-
-@Composable
-fun CreateAccountButton() {
-
-    Column (
-        modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom,Alignment.CenterHorizontally
-    ){
-
-        val context = LocalContext.current
-        TextButton(
-            onClick = { context.startActivity(Intent(context, CreateAccount::class.java))
-            },
-
-            ) {
-
-            Text("Create Account", color = Color(0xFF2196F3))
-        }
     }
 }

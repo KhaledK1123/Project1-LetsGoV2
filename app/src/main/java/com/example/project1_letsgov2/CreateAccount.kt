@@ -2,7 +2,6 @@ package com.example.project1_letsgov2
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -27,7 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-class MainActivity : ComponentActivity() {
+class CreateAccount : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,40 +36,36 @@ class MainActivity : ComponentActivity() {
                 //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                SimpleText("Sport Event App")
+                SimpleText3("Create Account")
 
-                SimpleText1(displayText = "Create or Find Sporting Events")
+                Name("Full Name")
+                NameBox()
 
-                Username("Please Login: Type Username")
-                UsernameBox()
+                Email("Email")
+                EmailBox()
 
-                Password("Password")
-                PasswordBox()
+                Password1("Password")
+                PasswordBox1()
 
-                ForgotPasswordButton()
+                ConfirmPassword1("Confirm Password")
+                ConfirmPasswordBox1()
 
-                Login()
+                CreateAccountButton1()
 
-                CreateAccountButton()
+                CancelButton()
             }
         }
     }
 }
 
 @Composable
-fun SimpleText(displayText: String) {
+fun SimpleText3(displayText: String) {
 
     Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 45.sp, modifier = Modifier.padding(16.dp))
 }
 
 @Composable
-fun SimpleText1(displayText: String) {
-
-    Text(text = displayText,fontSize = 20.sp)
-}
-
-@Composable
-fun Username(text: String) {
+fun Name(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -78,14 +73,14 @@ fun Username(text: String) {
             color = Color.Black
         ),
         modifier = Modifier
-            .paddingFromBaseline(top = 75.dp)
+            .paddingFromBaseline(top = 60.dp)
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
     )
 }
 
 @Composable
-fun Password(text: String) {
+fun Email(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -93,7 +88,37 @@ fun Password(text: String) {
             color = Color.Black
         ),
         modifier = Modifier
-            .paddingFromBaseline(top = 50.dp)
+            .paddingFromBaseline(top = 10.dp)
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+    )
+}
+
+@Composable
+fun Password1(text: String) {
+    Text(
+        text = text,
+        style = TextStyle(
+            fontSize = 16.sp,
+            color = Color.Black
+        ),
+        modifier = Modifier
+            .paddingFromBaseline(top = 10.dp)
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+    )
+}
+
+@Composable
+fun ConfirmPassword1(text: String) {
+    Text(
+        text = text,
+        style = TextStyle(
+            fontSize = 16.sp,
+            color = Color.Black
+        ),
+        modifier = Modifier
+            .paddingFromBaseline(top = 10.dp)
             .padding(horizontal = 16.dp)
             .fillMaxWidth()
     )
@@ -101,7 +126,7 @@ fun Password(text: String) {
 
 @ExperimentalFoundationApi
 @Composable
-fun UsernameBox() {
+fun NameBox() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -118,7 +143,7 @@ fun UsernameBox() {
 
 @ExperimentalFoundationApi
 @Composable
-fun PasswordBox() {
+fun EmailBox() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -134,22 +159,42 @@ fun PasswordBox() {
     )
 }
 
+@ExperimentalFoundationApi
 @Composable
-fun ForgotPasswordButton() {
+fun PasswordBox1() {
 
-    val context = LocalContext.current
-    TextButton(
-        onClick = {
-            context.startActivity(Intent(context, ForgotPassword::class.java))
-        },
-        modifier = Modifier.absolutePadding(left = 230.dp)
-    ) {
-        Text("Forgot Password",color = Color(0xFF2196F3))
-    }
+    var text by remember { mutableStateOf(TextFieldValue()) }
+
+    TextField(
+        value = text,
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        onValueChange = {
+            text = it
+        }
+    )
+}
+
+@ExperimentalFoundationApi
+@Composable
+fun ConfirmPasswordBox1() {
+
+    var text by remember { mutableStateOf(TextFieldValue()) }
+
+    TextField(
+        value = text,
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        onValueChange = {
+            text = it
+        }
+    )
 }
 
 @Composable
-fun Login() {
+fun CreateAccountButton1() {
 
     val context = LocalContext.current
     Card(
@@ -158,39 +203,36 @@ fun Login() {
         modifier = Modifier
             .padding(30.dp)
             .width(150.dp)
-            .clickable(onClick = {
-                Toast
-                    .makeText(context, "Welcome", Toast.LENGTH_SHORT)
-                    .show()
+            .clickable(onClick = { context.startActivity(Intent(context, MainActivity::class.java))
             })
     ) {
         Text(
-            text = "Login",
+            text = "Create Account",
             textAlign = TextAlign.Center,
             style = TextStyle(
-                fontSize = 20.sp, fontWeight = FontWeight.Bold
+                fontSize = 18.sp, fontWeight = FontWeight.Bold
             ),
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(10.dp)
         )
     }
 }
 
 @Composable
-fun CreateAccountButton() {
+fun CancelButton() {
 
     Column (
         modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom,Alignment.CenterHorizontally
+            .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
     ){
+
 
         val context = LocalContext.current
         TextButton(
-            onClick = { context.startActivity(Intent(context, CreateAccount::class.java))
+            onClick = { context.startActivity(Intent(context, MainActivity::class.java))
             },
 
             ) {
-
-            Text("Create Account", color = Color(0xFF2196F3))
+            Text("Cancel",color = Color(0xFF2196F3))
         }
     }
 }
