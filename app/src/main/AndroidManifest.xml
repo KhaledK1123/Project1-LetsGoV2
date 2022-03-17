@@ -20,6 +20,26 @@
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.Project1LetsGoV2" />
         <activity
+            android:name=".CommunitiesManage"
+            android:exported="false"
+            android:label="CommunitiesManage"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
+            android:name=".CommunitiesCreate"
+            android:exported="false"
+            android:label="CommunitiesCreate"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
+            android:name=".EventsManage"
+            android:exported="false"
+            android:label="EventsManage"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
+            android:name=".EventsCreate"
+            android:exported="false"
+            android:label="EventsCreate"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -30,6 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
