@@ -61,7 +61,12 @@ class CreateAccount : ComponentActivity() {
 @Composable
 fun SimpleText3(displayText: String) {
 
-    Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 45.sp, modifier = Modifier.padding(16.dp))
+    Text(
+        text = displayText,
+        fontFamily = FontFamily.Serif,
+        fontSize = 45.sp,
+        modifier = Modifier.padding(16.dp)
+    )
 }
 
 @Composable
@@ -203,7 +208,8 @@ fun CreateAccountButton1() {
         modifier = Modifier
             .padding(30.dp)
             .width(150.dp)
-            .clickable(onClick = { context.startActivity(Intent(context, MainActivity::class.java))
+            .clickable(onClick = {
+                context.startActivity(Intent(context, MainActivity::class.java))
             })
     ) {
         Text(
@@ -220,19 +226,20 @@ fun CreateAccountButton1() {
 @Composable
 fun CancelButton() {
 
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
-    ){
+    ) {
 
 
         val context = LocalContext.current
         TextButton(
-            onClick = { context.startActivity(Intent(context, MainActivity::class.java))
+            onClick = {
+                context.startActivity(Intent(context, MainActivity::class.java))
             },
 
             ) {
-            Text("Cancel",color = Color(0xFF2196F3))
+            Text("Cancel", color = Color(0xFF2196F3))
         }
     }
 }

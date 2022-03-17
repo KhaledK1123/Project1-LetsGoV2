@@ -2,18 +2,17 @@ package com.example.project1_letsgov2
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.material.TextField
-import androidx.compose.runtime.*
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,8 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,14 +38,6 @@ class MainActivity : ComponentActivity() {
 
                 SimpleText1(displayText = "Create or Find Sporting Events")
 
-                Username("Please Login: Type Username")
-                UsernameBox()
-
-                Password("Password")
-                PasswordBox()
-
-                ForgotPasswordButton()
-
                 Login()
 
                 CreateAccountButton()
@@ -60,13 +49,18 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun SimpleText(displayText: String) {
 
-    Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 45.sp, modifier = Modifier.padding(16.dp))
+    Text(
+        text = displayText,
+        fontFamily = FontFamily.Serif,
+        fontSize = 45.sp,
+        modifier = Modifier.padding(16.dp)
+    )
 }
 
 @Composable
 fun SimpleText1(displayText: String) {
 
-    Text(text = displayText,fontSize = 20.sp)
+    Text(text = displayText, fontSize = 20.sp)
 }
 
 @Composable
@@ -99,39 +93,20 @@ fun Password(text: String) {
     )
 }
 
-@ExperimentalFoundationApi
-@Composable
-fun UsernameBox() {
+fun LoginInput(user_name: String, password: String): String {
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    var status: String = ""
 
-    TextField(
-        value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        onValueChange = {
-            text = it
-        }
-    )
-}
+    if (user_name.equals("Tyler") && password.equals("Porter")) {
 
-@ExperimentalFoundationApi
-@Composable
-fun PasswordBox() {
+        status = "Login Successful"
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    } else {
 
-    TextField(value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        //keyboardType = KeyboardType.Password,
-        visualTransformation = PasswordVisualTransformation(),
-        onValueChange = {
-            text = it
-        }
-    )
+        status = "Login Unsuccessful"
+    }
+
+    return status
 }
 
 @Composable
@@ -142,50 +117,81 @@ fun ForgotPasswordButton() {
         onClick = {
             context.startActivity(Intent(context, ForgotPassword::class.java))
         },
-        modifier = Modifier.absolutePadding(left = 230.dp)
+        modifier = Modifier.absolutePadding(left = 200.dp)
     ) {
-        Text("Forgot Password",color = Color(0xFF2196F3))
+        Text("Forgot Password", color = Color(0xFF2196F3))
     }
 }
 
 @Composable
 fun Login() {
+    var context = LocalContext.current
 
-    val context = LocalContext.current
-    Card(
-        shape = RoundedCornerShape(10.dp),
-        backgroundColor = Color(0xFF2196F3),
+    Column(
+
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(30.dp)
-            .width(150.dp)
-            .clickable(onClick = {
-                Toast
-                    .makeText(context, "Welcome", Toast.LENGTH_SHORT)
-                    .show()
-            })
-    ) {
-        Text(
-            text = "Login",
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 20.sp, fontWeight = FontWeight.Bold
-            ),
-            modifier = Modifier.padding(16.dp)
-        )
+            .fillMaxWidth()
+            .padding(20.dp)
+    )
+    {
+
+        var usernameInput by rememberSaveable { mutableStateOf("") }
+        var passwordInput by rememberSaveable { mutableStateOf("") }
+
+        Username(text = "Username")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(), value = usernameInput, onValueChange = { usernameInput = it })
+
+        Password(text = "Password")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(), value = passwordInput, onValueChange = { passwordInput = it })
+
+        var status by rememberSaveable {
+            mutableStateOf("")
+
+        }
+
+        ForgotPasswordButton()
+
+        val backgroundColor = Color(0xFF2196F3)
+        Button(shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+            modifier = Modifier
+                .padding(30.dp)
+                .width(150.dp), onClick = { status = LoginInput(usernameInput, passwordInput) }) {
+
+            Text(
+                text = "Login",
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 20.sp, fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+        Text(text = "$status")
+
+        //Text(username)
     }
 }
 
 @Composable
 fun CreateAccountButton() {
 
-    Column (
+    Column(
         modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom,Alignment.CenterHorizontally
-    ){
+            .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
+    ) {
 
         val context = LocalContext.current
         TextButton(
-            onClick = { context.startActivity(Intent(context, CreateAccount::class.java))
+            onClick = {
+                context.startActivity(Intent(context, CreateAccount::class.java))
             },
 
             ) {

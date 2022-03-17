@@ -52,7 +52,12 @@ class ForgotPassword : ComponentActivity() {
 @Composable
 fun SimpleText2(displayText: String) {
 
-    Text(text = displayText, fontFamily = FontFamily.Serif, fontSize = 35.sp, modifier = Modifier.padding(16.dp))
+    Text(
+        text = displayText,
+        fontFamily = FontFamily.Serif,
+        fontSize = 35.sp,
+        modifier = Modifier.padding(16.dp)
+    )
 }
 
 @Composable
@@ -130,7 +135,8 @@ fun SubmitButton() {
         modifier = Modifier
             .padding(30.dp)
             .width(150.dp)
-            .clickable(onClick = { context.startActivity(Intent(context, MainActivity::class.java))
+            .clickable(onClick = {
+                context.startActivity(Intent(context, MainActivity::class.java))
             })
     ) {
         Text(
