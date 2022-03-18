@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                SimpleText("Sport Event App")
+                SimpleText("Let's Go")
 
                 SimpleText1(displayText = "Create or Find Sporting Events")
 
@@ -158,12 +158,18 @@ fun Login() {
 
         ForgotPasswordButton()
 
+        val context = LocalContext.current
         val backgroundColor = Color(0xFF2196F3)
         Button(shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
             modifier = Modifier
                 .padding(30.dp)
-                .width(150.dp), onClick = { status = LoginInput(usernameInput, passwordInput) }) {
+                .width(150.dp),
+            onClick = {
+                status = LoginInput(usernameInput, passwordInput); context.startActivity(
+                Intent(context, CommunitiesManage::class.java)
+            )
+            }) {
 
             Text(
                 text = "Login",

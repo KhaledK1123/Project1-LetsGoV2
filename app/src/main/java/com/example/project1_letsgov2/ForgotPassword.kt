@@ -35,7 +35,7 @@ class ForgotPassword : ComponentActivity() {
                 //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                SimpleText2("Please Create A New Password")
+                SimpleText2("Create New Password")
 
                 NewPassword("New Password")
                 NewPasswordBox()
