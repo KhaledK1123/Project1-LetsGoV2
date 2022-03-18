@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-class UpdateProfile(function: () -> Unit) : ComponentActivity() {
+class DeleteAccount(function: () -> Unit) : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,36 +32,26 @@ class UpdateProfile(function: () -> Unit) : ComponentActivity() {
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
 
-                ) {
-                SimpleText4("Please Update Your Account With a New Password")
+            ) {
+                SimpleText6("Please Select An Account Action")
 
-                UpdatedPassword("Updated Password")
-                UpdatedPasswordBox()
+                DeleteAccount("Delete Your Account")
+                DeleteAccountBox()
 
-                ConfirmUpdatedPassword("Confirm Updated Password")
-                UpdatedPasswordBox2()
+                ConfirmDeleteAccount("Confirm Account Deletion")
+                DeleteAccountBox2()
 
-                SubmitButton2()
+                //  SubmitButton4()
 
-                SimpleText5("Please Save Your Profile Changes")
-                SubmitButton3()
+                SimpleText5("We're Sorry to See You Go!")
+                SubmitButton5()
             }
         }
     }
 }
 
 @Composable
-fun SimpleText4(displayText: Unit) {
-
-    Text(
-        text = displayText,
-        fontFamily = FontFamily.Serif,
-        fontSize = 28.sp,
-        modifier = Modifier.padding(16.dp)
-    )
-}
-@Composable
-fun SimpleText5(displayText: String) {
+fun SimpleText6(displayText: Unit) {
 
     Text(
         text = displayText,
@@ -72,7 +62,7 @@ fun SimpleText5(displayText: String) {
 }
 
 @Composable
-fun UpdatedPassword(text: String) {
+fun DeleteAccount(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -87,7 +77,7 @@ fun UpdatedPassword(text: String) {
 }
 
 @Composable
-fun ConfirmUpdatedPassword(text: String) {
+fun ConfirmDeleteAccount(text: String) {
     Text(
         text = text,
         style = TextStyle(
@@ -103,7 +93,7 @@ fun ConfirmUpdatedPassword(text: String) {
 
 @ExperimentalFoundationApi
 @Composable
-fun UpdatedPasswordBox() {
+fun DeleteAccountBox() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -120,7 +110,7 @@ fun UpdatedPasswordBox() {
 
 @ExperimentalFoundationApi
 @Composable
-fun UpdatedPasswordBox2() {
+fun DeleteAccountBox2() {
 
     var text by remember { mutableStateOf(TextFieldValue()) }
 
@@ -135,8 +125,34 @@ fun UpdatedPasswordBox2() {
     )
 }
 
+/*
 @Composable
-fun SubmitButton2() {
+fun SubmitButton4() {
+
+    val context = LocalContext.current
+    Card(
+        shape = RoundedCornerShape(8.dp),
+        backgroundColor = Color(0xFF2196F3),
+        modifier = Modifier
+            .padding(30.dp)
+            .width(150.dp)
+            .clickable(onClick = {
+                context.startActivity(Intent(context, MainActivity::class.java))
+            })
+    ) {
+        Text(
+            text = "Submit",
+            textAlign = TextAlign.Center,
+            style = TextStyle(
+                fontSize = 18.sp, fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}   */
+
+@Composable
+fun SubmitButton5() {
 
     val context = LocalContext.current
     Card(
@@ -159,34 +175,3 @@ fun SubmitButton2() {
         )
     }
 }
-@Composable
-fun SubmitButton3() {
-
-    val context = LocalContext.current
-    Card(
-        shape = RoundedCornerShape(8.dp),
-        backgroundColor = Color(0xFF2196F3),
-        modifier = Modifier
-            .padding(30.dp)
-            .width(150.dp)
-            .clickable(onClick = {
-                context.startActivity(Intent(context, MainActivity::class.java))
-            })
-    ) {
-        Text(
-            text = "Submit",
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 18.sp, fontWeight = FontWeight.Bold
-            ),
-            modifier = Modifier.padding(16.dp)
-        )
-    }
-}
-
-/* @Composable
-fun saveProfileChanges()
-{
-
-}
-*/
