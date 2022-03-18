@@ -20,6 +20,16 @@
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.Project1LetsGoV2" />
         <activity
+            android:name=".UpdateProfile"
+            android:exported="false"
+            android:label="UpdateProfile"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
+            android:name=".DeleteAccount"
+            android:exported="false"
+            android:label="DeleteAccount"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
             android:name=".CommunitiesManage"
             android:exported="false"
             android:label="CommunitiesManage"
