@@ -167,7 +167,7 @@ fun Login() {
                 .width(150.dp),
             onClick = {
                 status = LoginInput(usernameInput, passwordInput); context.startActivity(
-                Intent(context, CommunitiesManage::class.java)
+                Intent(context, UpdateProfile::class.java)
             )
             }) {
 
