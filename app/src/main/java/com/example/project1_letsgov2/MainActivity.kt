@@ -295,6 +295,16 @@ fun AppMainScreen(){
                     }
                     )
                 }
+                //4th
+                composable(DrawerScreen.Friends.route)
+                {
+
+                    Friends ( openDrawer = {
+
+                        openDrawer()
+                    }
+                    )
+                }
 
 
             }

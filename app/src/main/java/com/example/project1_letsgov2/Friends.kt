@@ -36,19 +36,7 @@ class Friends() : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
-                SimpleText7("Please Select a Friend to Add")
 
-                // 'Set' onClickListener(?), for locating & adding friend? {crossed my mind}
-
-                AddFriend(" Added, as a Friend")
-                AddedFriendBox()
-
-                ConfirmFriendsUpdated("Confirm You've Finished Adding Friends")
-                UpdatedFriendsBox()
-                SubmitButton6()
-
-                SimpleText8("Please Save Your Profile Updates")
-                SubmitButton7()
             }
         }
     }

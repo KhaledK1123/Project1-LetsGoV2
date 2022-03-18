@@ -115,3 +115,45 @@ fun Events(openDrawer:()->Unit)
 
 
 }
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun Friends(openDrawer:()->Unit)
+{
+    Column(
+
+        modifier=Modifier.fillMaxSize()
+    ) {
+
+
+        TopBar(title = "Friends",   buttonIcon =Icons.Filled.Menu,onButtonClicked = {openDrawer()})
+
+
+        Column(
+            modifier=Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+
+        ) {
+
+//            Default("Your Friends")
+//            Default("You have no friends!")
+//            //StartCommunity()
+            SimpleText7("Please Select a Friend to Add")
+
+            // 'Set' onClickListener(?), for locating & adding friend? {crossed my mind}
+
+            AddFriend(" Added, as a Friend")
+            AddedFriendBox()
+
+            ConfirmFriendsUpdated("Confirm You've Finished Adding Friends")
+            UpdatedFriendsBox()
+            SubmitButton6()
+
+            SimpleText8("Please Save Your Profile Updates")
+            SubmitButton7()
+        }
+
+    }
+
+}
