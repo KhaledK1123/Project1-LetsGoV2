@@ -51,7 +51,7 @@ class DeleteAccount(function: () -> Unit) : ComponentActivity() {
 }
 
 @Composable
-fun SimpleText6(displayText: Unit) {
+fun SimpleText6(displayText: String) {
 
     Text(
         text = displayText,

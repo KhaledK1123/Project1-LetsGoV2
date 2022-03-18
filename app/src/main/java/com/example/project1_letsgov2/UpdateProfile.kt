@@ -51,7 +51,7 @@ class UpdateProfile(function: () -> Unit) : ComponentActivity() {
 }
 
 @Composable
-fun SimpleText4(displayText: Unit) {
+fun SimpleText4(displayText: String) {
 
     Text(
         text = displayText,
