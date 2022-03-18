@@ -30,6 +30,11 @@
             android:label="DeleteAccount"
             android:theme="@style/Theme.Project1LetsGoV2" />
         <activity
+            android:name=".Friends"
+            android:exported="false"
+            android:label="Friends"
+            android:theme="@style/Theme.Project1LetsGoV2" />
+        <activity
             android:name=".CommunitiesManage"
             android:exported="false"
             android:label="CommunitiesManage"
