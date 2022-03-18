@@ -23,12 +23,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// Top bar, for the user's name??
-
 class Friends() : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+// Top bar, for the user's name, somewhere below 'Set Content'??
+
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
