@@ -43,8 +43,6 @@ class MainActivity : ComponentActivity() {
                 SimpleText1(displayText = "Create or Find Sporting Events")
 
                 Login()
-
-                CreateAccountButton()
             }
         }
     }
@@ -101,7 +99,7 @@ fun LoginInput(user_name: String, password: String): String {
 
     var status: String = ""
 
-    if (user_name.equals("Tyler") && password.equals("Porter")) {
+    if (user_name.equals("John") && password.equals("password")) {
 
         status = "Login Successful"
 
@@ -114,16 +112,37 @@ fun LoginInput(user_name: String, password: String): String {
 }
 
 @Composable
-fun ForgotPasswordButton() {
+fun ForgotPasswordCreateAccount() {
+    Row() {
 
-    val context = LocalContext.current
-    TextButton(
-        onClick = {
-            context.startActivity(Intent(context, ForgotPassword::class.java))
-        },
-        modifier = Modifier.absolutePadding(left = 200.dp)
-    ) {
-        Text("Forgot Password", color = Color(0xFF2196F3))
+        Column() {
+            val context = LocalContext.current
+            TextButton(
+                onClick = {
+                    context.startActivity(Intent(context, ForgotPassword::class.java))
+                },
+                modifier = Modifier.padding(20.dp)
+            ) {
+                Text("Forgot Password", color = Color(0xFF2196F3))
+            }
+        }
+
+        Row() {
+            Column() {
+                val context = LocalContext.current
+                TextButton(
+                    onClick = {
+                        context.startActivity(Intent(context, CreateAccount::class.java))
+                    },
+
+                    modifier = Modifier.padding(20.dp)
+
+                ) {
+
+                    Text("Create Account", color = Color(0xFF2196F3))
+                }
+            }
+        }
     }
 }
 
@@ -160,7 +179,7 @@ fun Login() {
 
         }
 
-        ForgotPasswordButton()
+        ForgotPasswordCreateAccount()
 
         val context = LocalContext.current
         val backgroundColor = Color(0xFF2196F3)
@@ -187,27 +206,6 @@ fun Login() {
         Text(text = "$status")
 
         //Text(username)
-    }
-}
-
-@Composable
-fun CreateAccountButton() {
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
-    ) {
-
-        val context = LocalContext.current
-        TextButton(
-            onClick = {
-                context.startActivity(Intent(context, CreateAccount::class.java))
-            },
-
-            ) {
-
-            Text("Create Account", color = Color(0xFF2196F3))
-        }
     }
 }
 

@@ -8,10 +8,9 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,13 +34,8 @@ class ForgotPassword : ComponentActivity() {
                 //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+
                 SimpleText2("Create New Password")
-
-                NewPassword("New Password")
-                NewPasswordBox()
-
-                ConfirmPassword("Confirm Password")
-                ConfirmPasswordBox()
 
                 SubmitButton()
             }
@@ -90,62 +84,83 @@ fun ConfirmPassword(text: String) {
     )
 }
 
-@ExperimentalFoundationApi
-@Composable
-fun NewPasswordBox() {
+fun NewPasswordInput(new_password: String, confirm_password: String): String {
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    var status: String = ""
 
-    TextField(
-        value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        onValueChange = {
-            text = it
-        }
-    )
-}
+    if (new_password.equals("password") && confirm_password.equals("password")) {
 
-@ExperimentalFoundationApi
-@Composable
-fun ConfirmPasswordBox() {
+        status = "Confirmed"
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    } else {
 
-    TextField(value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        //keyboardType = KeyboardType.Password,
-        visualTransformation = PasswordVisualTransformation(),
-        onValueChange = {
-            text = it
-        }
-    )
+        status = "Deny"
+    }
+
+    return status
 }
 
 @Composable
 fun SubmitButton() {
 
     val context = LocalContext.current
-    Card(
-        shape = RoundedCornerShape(10.dp),
-        backgroundColor = Color(0xFF2196F3),
+    Column(
+
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(30.dp)
-            .width(150.dp)
-            .clickable(onClick = {
-                context.startActivity(Intent(context, MainActivity::class.java))
-            })
-    ) {
-        Text(
-            text = "Submit",
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 20.sp, fontWeight = FontWeight.Bold
-            ),
-            modifier = Modifier.padding(16.dp)
-        )
+            .fillMaxWidth()
+            .padding(20.dp)
+    )
+    {
+
+
+        var newPasswordInput by rememberSaveable { mutableStateOf("") }
+        var confirmPasswordInput by rememberSaveable { mutableStateOf("") }
+
+        NewPassword(text = "New Password")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = newPasswordInput,
+            onValueChange = { newPasswordInput = it })
+
+        ConfirmPassword(text = "Confirm Password")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = confirmPasswordInput,
+            onValueChange = { confirmPasswordInput = it })
+
+        var status by rememberSaveable {
+            mutableStateOf("")
+
+        }
+
+        val backgroundColor = Color(0xFF2196F3)
+        Button(shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+            modifier = Modifier
+                .padding(30.dp)
+                .width(150.dp),
+            onClick = {
+                status =
+                    NewPasswordInput(newPasswordInput, confirmPasswordInput); context.startActivity(
+                Intent(context, MainActivity::class.java)
+            )
+            }) {
+
+            Text(
+                text = "Login",
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 20.sp, fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+        Text(text = "$status")
+
     }
 }

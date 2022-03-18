@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,26 +34,12 @@ class CreateAccount : ComponentActivity() {
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 SimpleText3("Create Account")
 
-                Name("Full Name")
-                NameBox()
-
-                Email("Email")
-                EmailBox()
-
-                Password1("Password")
-                PasswordBox1()
-
-                ConfirmPassword1("Confirm Password")
-                ConfirmPasswordBox1()
-
                 CreateAccountButton1()
 
-                CancelButton()
             }
         }
     }
@@ -65,7 +52,7 @@ fun SimpleText3(displayText: String) {
         text = displayText,
         fontFamily = FontFamily.Serif,
         fontSize = 45.sp,
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(1.dp)
     )
 }
 
@@ -164,62 +151,117 @@ fun EmailBox() {
     )
 }
 
-@ExperimentalFoundationApi
-@Composable
-fun PasswordBox1() {
+fun CreateAccountInput(
+    full_name: String,
+    email: String,
+    new_password: String,
+    confirm_password: String
+): String {
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    var status: String = ""
 
-    TextField(
-        value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        onValueChange = {
-            text = it
-        }
-    )
-}
+    if (full_name.equals("John Doe") &&
+        email.equals("abc@gmail.com") &&
+        new_password.equals("password") &&
+        confirm_password.equals("password")
+    ) {
 
-@ExperimentalFoundationApi
-@Composable
-fun ConfirmPasswordBox1() {
+        status = "Confirmed"
 
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    } else {
 
-    TextField(
-        value = text,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        onValueChange = {
-            text = it
-        }
-    )
+        status = "Deny"
+    }
+
+    return status
 }
 
 @Composable
 fun CreateAccountButton1() {
 
     val context = LocalContext.current
-    Card(
-        shape = RoundedCornerShape(10.dp),
-        backgroundColor = Color(0xFF2196F3),
+    Column(
+
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(30.dp)
-            .width(150.dp)
-            .clickable(onClick = {
-                context.startActivity(Intent(context, MainActivity::class.java))
-            })
-    ) {
-        Text(
-            text = "Create Account",
-            textAlign = TextAlign.Center,
-            style = TextStyle(
-                fontSize = 18.sp, fontWeight = FontWeight.Bold
-            ),
-            modifier = Modifier.padding(10.dp)
-        )
+            .fillMaxWidth()
+            .padding(1.dp)
+    )
+    {
+
+
+        var fullNameInput by rememberSaveable { mutableStateOf("") }
+        var emailInput by rememberSaveable { mutableStateOf("") }
+        var newPasswordInput by rememberSaveable { mutableStateOf("") }
+        var confirmPasswordInput by rememberSaveable { mutableStateOf("") }
+
+        Name(text = "Full Name")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = fullNameInput,
+            onValueChange = { fullNameInput = it })
+
+        Email(text = "Email")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = emailInput,
+            onValueChange = { emailInput = it })
+
+        Password1(text = "Password")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = newPasswordInput,
+            onValueChange = { newPasswordInput = it })
+
+        ConfirmPassword1(text = "Confirm Password")
+
+        TextField(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+            value = confirmPasswordInput,
+            onValueChange = { confirmPasswordInput = it })
+
+        var status by rememberSaveable {
+            mutableStateOf("")
+
+        }
+
+        //val backgroundColor = Color(0xFF2196F3)
+        Card(
+            shape = RoundedCornerShape(10.dp),
+            backgroundColor = Color(0xFF2196F3),
+            modifier = Modifier
+                .padding(30.dp)
+                .width(150.dp)
+                .clickable(onClick = {
+                    status = CreateAccountInput(
+                        fullNameInput,
+                        emailInput,
+                        newPasswordInput,
+                        confirmPasswordInput
+                    );
+                    context.startActivity(Intent(context, MainActivity::class.java))
+                })
+        ) {
+            Text(
+                text = "Create Account",
+                textAlign = TextAlign.Center,
+                style = TextStyle(
+                    fontSize = 18.sp, fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier.padding(10.dp)
+            )
+
+        }
+        Text(text = "$status")
+
+        CancelButton()
     }
 }
 
@@ -230,7 +272,6 @@ fun CancelButton() {
         modifier = Modifier
             .fillMaxSize(), Arrangement.Bottom, Alignment.CenterHorizontally
     ) {
-
 
         val context = LocalContext.current
         TextButton(
