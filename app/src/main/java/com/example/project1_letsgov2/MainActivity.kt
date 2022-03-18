@@ -8,11 +8,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.compose.runtime.Composable
+import com.example.project1_letsgov2.ui.Drawer
+import com.example.project1_letsgov2.ui.DrawerScreen
 
 class MainActivity : ComponentActivity() {
     @ExperimentalFoundationApi
@@ -205,4 +209,105 @@ fun CreateAccountButton() {
             Text("Create Account", color = Color(0xFF2196F3))
         }
     }
+}
+
+@Composable
+fun AppMainScreen(){
+
+    val navController= rememberNavController()
+    Surface(
+        color=MaterialTheme.colors.background
+
+    ) {
+
+        var drawerState= rememberDrawerState(DrawerValue.Closed )
+        var scope= rememberCoroutineScope() //corouitines
+        var openDrawer = {
+
+            scope.launch {
+
+                drawerState.open()
+            }
+        }
+
+        //ModalDrawer
+
+        ModalDrawer(
+
+            drawerState=drawerState,
+            gesturesEnabled = drawerState.isOpen,
+            drawerContent = {
+
+                Drawer(onDestinationClicked = { route ->
+
+                    scope.launch {
+
+                        drawerState.close()
+
+                    }
+                    navController.navigate(route)
+                    {
+                        popUpTo=navController.graph.startDestinationId //replaced
+                        //popUpToId=navController.graph.startDestinationId
+                        launchSingleTop=true
+                    }
+                })
+            }
+
+
+        ) {
+
+            NavHost(navController = navController, startDestination = DrawerScreen.Profile.route)
+            {
+
+                composable(DrawerScreen.Profile.route)
+                {
+
+                    UpdateProfile (openDrawer ={
+
+                        openDrawer()
+                    }
+
+                    )
+                }
+
+                //2nd
+
+                composable(DrawerScreen.Communities.route)
+                {
+
+                    Communities (openDrawer ={
+
+                        openDrawer()
+                    }
+
+                    )
+                }
+
+                //3rd
+
+                composable(DrawerScreen.Events.route)
+                {
+
+                    Events ( openDrawer = {
+
+                        openDrawer()
+                    }
+                    )
+                }
+
+
+            }
+
+
+
+
+        }
+
+
+    }
+
+
+
+
 }

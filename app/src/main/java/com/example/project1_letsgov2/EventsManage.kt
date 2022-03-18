@@ -28,9 +28,7 @@ class EventsManage : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-                SimpleText1("My Events")
-                Default("You are not part of any Events.... Find one you like or create your own!")
-                StartEvent()
+
             }
         }
     }

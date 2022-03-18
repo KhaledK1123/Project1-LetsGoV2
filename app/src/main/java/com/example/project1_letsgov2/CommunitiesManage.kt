@@ -28,9 +28,7 @@ class CommunitiesManage : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
-                    Default("My Communities")
-                    Default("You are not part of any communities.... Find one you like or create your own!")
-                    StartCommunity()
+
             }
         }
     }

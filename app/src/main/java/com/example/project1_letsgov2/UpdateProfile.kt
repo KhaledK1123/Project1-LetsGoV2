@@ -33,18 +33,7 @@ class UpdateProfile() : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally
 
                 ) {
-                SimpleText4("Please Update Your Account With a New Password")
-
-                UpdatedPassword("Updated Password")
-                UpdatedPasswordBox()
-
-                ConfirmUpdatedPassword("Confirm Updated Password")
-                UpdatedPasswordBox2()
-
-                SubmitButton2()
-
-                SimpleText5("Please Save Your Profile Changes")
-                SubmitButton3()
+                AppMainScreen()
             }
         }
     }
