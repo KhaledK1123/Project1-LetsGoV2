@@ -143,7 +143,6 @@ fun EmailBox() {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-        //keyboardType = KeyboardType.Password,
         visualTransformation = PasswordVisualTransformation(),
         onValueChange = {
             text = it
@@ -160,7 +159,7 @@ fun CreateAccountInput(
 
     var status: String = ""
 
-    if (full_name.equals("John Doe") &&
+    if (full_name.equals("JohnDoe") &&
         email.equals("abc@gmail.com") &&
         new_password.equals("password") &&
         confirm_password.equals("password")
@@ -190,18 +189,18 @@ fun CreateAccountButton1() {
     {
 
 
-        var fullNameInput by rememberSaveable { mutableStateOf("") }
+        var fullUsernameInput by rememberSaveable { mutableStateOf("") }
         var emailInput by rememberSaveable { mutableStateOf("") }
         var newPasswordInput by rememberSaveable { mutableStateOf("") }
         var confirmPasswordInput by rememberSaveable { mutableStateOf("") }
 
-        Name(text = "Full Name")
+        Name(text = "Username")
 
         TextField(modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-            value = fullNameInput,
-            onValueChange = { fullNameInput = it })
+            value = fullUsernameInput,
+            onValueChange = { fullUsernameInput = it })
 
         Email(text = "Email")
 
@@ -241,7 +240,7 @@ fun CreateAccountButton1() {
                 .width(150.dp)
                 .clickable(onClick = {
                     status = CreateAccountInput(
-                        fullNameInput,
+                        fullUsernameInput,
                         emailInput,
                         newPasswordInput,
                         confirmPasswordInput

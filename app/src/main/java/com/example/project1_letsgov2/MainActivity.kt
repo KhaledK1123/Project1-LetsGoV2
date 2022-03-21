@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                //verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 SimpleText("Let's Go")
@@ -48,6 +47,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//displays the Let's Go title
 @Composable
 fun SimpleText(displayText: String) {
 
@@ -59,12 +59,14 @@ fun SimpleText(displayText: String) {
     )
 }
 
+//displays create or find event text
 @Composable
 fun SimpleText1(displayText: String) {
 
     Text(text = displayText, fontSize = 20.sp)
 }
 
+//username text
 @Composable
 fun Username(text: String) {
     Text(
@@ -80,6 +82,7 @@ fun Username(text: String) {
     )
 }
 
+//password text
 @Composable
 fun Password(text: String) {
     Text(
@@ -95,22 +98,24 @@ fun Password(text: String) {
     )
 }
 
+//if else statement for username and password
 fun LoginInput(user_name: String, password: String): String {
 
     var status: String = ""
 
     if (user_name.equals("John") && password.equals("password")) {
 
-        status = "Login Successful"
+        status = ""
 
     } else {
 
-        status = "Login Unsuccessful"
+        status = ""
     }
 
     return status
 }
 
+//forgot password and create account clickable text
 @Composable
 fun ForgotPasswordCreateAccount() {
     Row() {
@@ -146,9 +151,10 @@ fun ForgotPasswordCreateAccount() {
     }
 }
 
+//login button and allows to progress to UpdateProfile page
 @Composable
 fun Login() {
-    var context = LocalContext.current
+    LocalContext.current
 
     Column(
 
@@ -164,12 +170,14 @@ fun Login() {
 
         Username(text = "Username")
 
+        //username input gray box
         TextField(modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(), value = usernameInput, onValueChange = { usernameInput = it })
 
         Password(text = "Password")
 
+        //password input gray box
         TextField(modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(), value = passwordInput, onValueChange = { passwordInput = it })
@@ -179,47 +187,71 @@ fun Login() {
 
         }
 
+        //calling forgot password and create account function
         ForgotPasswordCreateAccount()
 
         val context = LocalContext.current
         val backgroundColor = Color(0xFF2196F3)
-        Button(shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
-            modifier = Modifier
-                .padding(30.dp)
-                .width(150.dp),
-            onClick = {
-                status = LoginInput(usernameInput, passwordInput); context.startActivity(
-                Intent(context, UpdateProfile::class.java)
-            )
-            }) {
 
-            Text(
-                text = "Login",
-                textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 20.sp, fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier.padding(16.dp)
-            )
+        //if else statement checking to see if username and password is correct
+        if (usernameInput == ("JohnDoe") && passwordInput == ("password")) {
+            Button(shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+                modifier = Modifier
+                    .padding(30.dp)
+                    .width(150.dp),
+
+                onClick = {
+                    status = LoginInput(usernameInput, passwordInput); context.startActivity(
+                    Intent(context, UpdateProfile::class.java)
+                )
+                }) {
+
+                Text(
+                    text = "Login",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 20.sp, fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        } else {
+            Button(shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+                modifier = Modifier
+                    .padding(30.dp)
+                    .width(150.dp),
+
+                onClick = {
+                    status = LoginInput(usernameInput, passwordInput)
+                }) {
+
+                Text(
+                    text = "Login",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 20.sp, fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         }
         Text(text = "$status")
-
-        //Text(username)
     }
 }
 
 @Composable
-fun AppMainScreen(){
+fun AppMainScreen() {
 
-    val navController= rememberNavController()
+    val navController = rememberNavController()
     Surface(
-        color=MaterialTheme.colors.background
+        color = MaterialTheme.colors.background
 
     ) {
 
-        var drawerState= rememberDrawerState(DrawerValue.Closed )
-        var scope= rememberCoroutineScope() //corouitines
+        var drawerState = rememberDrawerState(DrawerValue.Closed)
+        var scope = rememberCoroutineScope() //corouitines
         var openDrawer = {
 
             scope.launch {
@@ -232,7 +264,7 @@ fun AppMainScreen(){
 
         ModalDrawer(
 
-            drawerState=drawerState,
+            drawerState = drawerState,
             gesturesEnabled = drawerState.isOpen,
             drawerContent = {
 
@@ -245,14 +277,12 @@ fun AppMainScreen(){
                     }
                     navController.navigate(route)
                     {
-                        popUpTo=navController.graph.startDestinationId //replaced
+                        popUpTo = navController.graph.startDestinationId //replaced
                         //popUpToId=navController.graph.startDestinationId
-                        launchSingleTop=true
+                        launchSingleTop = true
                     }
                 })
             }
-
-
         ) {
 
             NavHost(navController = navController, startDestination = DrawerScreen.Profile.route)
@@ -261,7 +291,7 @@ fun AppMainScreen(){
                 composable(DrawerScreen.Profile.route)
                 {
 
-                    UpdateProfile (openDrawer ={
+                    UpdateProfile(openDrawer = {
 
                         openDrawer()
                     }
@@ -274,7 +304,7 @@ fun AppMainScreen(){
                 composable(DrawerScreen.Communities.route)
                 {
 
-                    Communities (openDrawer ={
+                    Communities(openDrawer = {
 
                         openDrawer()
                     }
@@ -287,7 +317,7 @@ fun AppMainScreen(){
                 composable(DrawerScreen.Events.route)
                 {
 
-                    Events ( openDrawer = {
+                    Events(openDrawer = {
 
                         openDrawer()
                     }
@@ -297,25 +327,13 @@ fun AppMainScreen(){
                 composable(DrawerScreen.Friends.route)
                 {
 
-                    Friends ( openDrawer = {
+                    Friends(openDrawer = {
 
                         openDrawer()
                     }
                     )
                 }
-
-
             }
-
-
-
-
         }
-
-
     }
-
-
-
-
 }
