@@ -50,6 +50,7 @@ class DeleteAccount() : ComponentActivity() {
     }
 }
 
+//See lines 43-44, of 'UpdateProfile', RE: consistency among screens
 @Composable
 fun SimpleText6(displayText: String) {
 
