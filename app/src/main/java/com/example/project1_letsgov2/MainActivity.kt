@@ -104,11 +104,11 @@ fun LoginInput(user_name: String, password: String): String {
 
     if (user_name.equals("John") && password.equals("password")) {
 
-        status = "Login Successful"
+        status = ""
 
     } else {
 
-        status = "Login Unsuccessful"
+        status = ""
     }
 
     return status
@@ -151,7 +151,7 @@ fun ForgotPasswordCreateAccount() {
 
 @Composable
 fun Login() {
-    var context = LocalContext.current
+    LocalContext.current
 
     Column(
 
@@ -186,29 +186,50 @@ fun Login() {
 
         val context = LocalContext.current
         val backgroundColor = Color(0xFF2196F3)
-        Button(shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
-            modifier = Modifier
-                .padding(30.dp)
-                .width(150.dp),
-            onClick = {
-                status = LoginInput(usernameInput, passwordInput); context.startActivity(
-                Intent(context, UpdateProfile::class.java)
-            )
-            }) {
+        if (usernameInput == ("John") && passwordInput == ("password")) {
+            Button(shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+                modifier = Modifier
+                    .padding(30.dp)
+                    .width(150.dp),
 
-            Text(
-                text = "Login",
-                textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 20.sp, fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier.padding(16.dp)
-            )
+                onClick = {
+                    status = LoginInput(usernameInput, passwordInput); context.startActivity(
+                    Intent(context, CreateAccount::class.java)
+                )
+                }) {
+
+                Text(
+                    text = "Login",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 20.sp, fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        } else {
+            Button(shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
+                modifier = Modifier
+                    .padding(30.dp)
+                    .width(150.dp),
+
+                onClick = {
+                    status = LoginInput(usernameInput, passwordInput)
+                }) {
+
+                Text(
+                    text = "Login",
+                    textAlign = TextAlign.Center,
+                    style = TextStyle(
+                        fontSize = 20.sp, fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         }
         Text(text = "$status")
-
-        //Text(username)
     }
 }
 
