@@ -41,9 +41,9 @@ class DeleteAccount() : ComponentActivity() {
                 ConfirmDeleteAccount("Confirm Account Deletion")
                 DeleteAccountBox2()
 
-                //  SubmitButton4()
-
-                SimpleText5("We're Sorry to See You Go!")
+                /*  SubmitButton4() [not needed, now, after edits];
+                Line 46: Felt more organized, with 2 sentences in 1 code line */
+                SimpleText5("Your Account has been deleted. We're Sorry to See You Go!")
                 SubmitButton5()
             }
         }
@@ -149,8 +149,9 @@ fun SubmitButton4() {
             modifier = Modifier.padding(16.dp)
         )
     }
-}   */
+}  [Line's 128-here: not necessary, after commenting out #44] */
 
+//Again, general consistency, with other screens, due to similar actions (& small size edits)
 @Composable
 fun SubmitButton5() {
 

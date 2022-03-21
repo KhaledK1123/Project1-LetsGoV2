@@ -29,8 +29,7 @@ class Friends() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-// Top bar, for the user's name, somewhere below 'Set Content'??
-
+// Similar to 'Update Profile', with updating action(s)
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -69,6 +68,7 @@ fun FriendName(text: String) {
     )
 }
 
+//Lines 72-86: Departure, from 'UpdateProfile'; used my name, for sample entry
 fun FriendInput(friend_name: String, password: String): String {
 
     var status: String = ""
@@ -195,7 +195,7 @@ fun SubmitButton7() {
             .padding(30.dp)
             .width(150.dp)
             .clickable(onClick = {
-                Toast.makeText(context,"Request Sent!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Friend Request Sent!", Toast.LENGTH_LONG).show()
                 //context.startActivity(Intent(context, Friend::class.java))
             })
     ) {

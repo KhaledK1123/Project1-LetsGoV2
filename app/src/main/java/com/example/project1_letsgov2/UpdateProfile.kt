@@ -40,6 +40,8 @@ class UpdateProfile() : ComponentActivity() {
     }
 }
 
+/* General consistency, with appearances & organization; some size adjustments (users' eyes);
+some similarities, w/'Create Account' & 'ForgotPassword' */
 @Composable
 fun SimpleText4(displayText: String) {
 
@@ -152,6 +154,7 @@ fun SubmitButton2() {
 @Composable
 fun SubmitButton3() {
 
+//More user-friendly, & engaging, confirmation message (line 166)
     val context = LocalContext.current
     Card(
         shape = RoundedCornerShape(8.dp),
@@ -160,7 +163,8 @@ fun SubmitButton3() {
             .padding(30.dp)
             .width(150.dp)
             .clickable(onClick = {
-                Toast.makeText(context,"Password Successfully Reset!", Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Password Successfully Reset!", Toast.LENGTH_LONG)
+                    .show()
             })
     ) {
         Text(
@@ -174,7 +178,7 @@ fun SubmitButton3() {
     }
 }
 
-/* @Composable
+/* (not needed, now: was part of initial setup idea >) @Composable
 fun saveProfileChanges()
 {
 
