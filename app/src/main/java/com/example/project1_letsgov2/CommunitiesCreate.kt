@@ -101,7 +101,8 @@ fun CreateCommunity() {
 
         val context = LocalContext.current
         TextButton(
-            onClick = { //code to create the community locally
+            onClick = {
+                Toast.makeText(context,"Successfully Created Event!", Toast.LENGTH_LONG).show()
             },
 
             ) {

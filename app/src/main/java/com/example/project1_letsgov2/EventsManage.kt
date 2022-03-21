@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.*
@@ -24,7 +25,7 @@ class EventsManage : ComponentActivity() {
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                //verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
@@ -38,18 +39,18 @@ class EventsManage : ComponentActivity() {
 fun StartEvent() {
 
     Column (
-        modifier = Modifier
-            .fillMaxSize(), Arrangement.Bottom,Alignment.CenterHorizontally
+        modifier = Modifier,
+            Arrangement.Center,Alignment.CenterHorizontally
     ){
 
         val context = LocalContext.current
-        TextButton(
+        Button(
             onClick = { context.startActivity(Intent(context, EventsCreate::class.java))
             },
 
             ) {
 
-            Text("Start an Event", color = Color(0xFF2196F3))
+            Text("Start an Event")
         }
     }
 }

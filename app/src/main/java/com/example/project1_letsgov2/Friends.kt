@@ -2,6 +2,7 @@ package com.example.project1_letsgov2
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -194,7 +195,8 @@ fun SubmitButton7() {
             .padding(30.dp)
             .width(150.dp)
             .clickable(onClick = {
-                context.startActivity(Intent(context, MainActivity::class.java))
+                Toast.makeText(context,"Request Sent!", Toast.LENGTH_LONG).show()
+                //context.startActivity(Intent(context, Friend::class.java))
             })
     ) {
         Text(

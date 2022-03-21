@@ -74,7 +74,8 @@ fun CreateEvent() {
 
         val context = LocalContext.current
         TextButton(
-            onClick = { //code to create the Event locally
+            onClick = {
+                Toast.makeText(context,"Password Successfully Reset!", Toast.LENGTH_LONG).show()
             },
 
             ) {

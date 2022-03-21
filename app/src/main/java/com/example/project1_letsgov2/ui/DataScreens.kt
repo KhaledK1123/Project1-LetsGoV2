@@ -17,6 +17,8 @@ import androidx.compose.ui.res.painterResource
 import com.example.project1_letsgov2.R
 import androidx.navigation.NavController
 
+var list:Boolean = false
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun UpdateProfile(openDrawer:()->Unit)
@@ -37,17 +39,18 @@ fun UpdateProfile(openDrawer:()->Unit)
 
         ) {
 
-            SimpleText4("Please Update Your Account With a New Password")
+            SimpleText4("Reset Password Here!")
 
-            UpdatedPassword("Updated Password")
+            UpdatedPassword("Old Password:")
             UpdatedPasswordBox()
+
+            ConfirmUpdatedPassword("Updated Password:")
+            UpdatedPasswordBox2()
 
             ConfirmUpdatedPassword("Confirm Updated Password")
             UpdatedPasswordBox2()
 
-            SubmitButton2()
-
-            SimpleText5("Please Save Your Profile Changes")
+            //SimpleText5("Please Save Your Profile Changes")
             SubmitButton3()
 
         }
@@ -63,23 +66,33 @@ fun Communities(openDrawer:()->Unit)
 {
     Column(
 
-        modifier=Modifier.fillMaxSize()
+        modifier=Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
 
         TopBar(title = "Communities",   buttonIcon =Icons.Filled.Menu,onButtonClicked = {openDrawer()})
-
+        StartCommunity()
 
         Column(
             modifier=Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
 
-            Default("My Communities")
-            Default("You are not part of any communities.... Find one you like or create your own!")
-            StartCommunity()
+//            if(list)
+//            {
+                AllCommunities(communityList = communities)
+            //AllEvents(eventList = events)
+//            }
+//                else
+//                {
+                //Default("My Communities")
+                //Default("You are not part of any communities.... Find one you like or create your own!")
+                //StartCommunity()
+           // }
         }
 
     }
@@ -92,23 +105,24 @@ fun Events(openDrawer:()->Unit)
 {
     Column(
 
-        modifier=Modifier.fillMaxSize()
+        modifier=Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
 
         TopBar(title = "Events",   buttonIcon =Icons.Filled.Menu,onButtonClicked = {openDrawer()})
 
-
+        StartEvent()
+        //AllEvents(eventList = events)
         Column(
             modifier=Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
-            SimpleText1("My Events")
-            Default("You are not part of any Events.... Find one you like or create your own!")
-            StartEvent()
-            //Text(text = "Help Page Content goes here")
+            AllEvents(eventList = events)
+            //AllCommunities(communityList = communities)
         }
 
     }
@@ -131,7 +145,7 @@ fun Friends(openDrawer:()->Unit)
 
         Column(
             modifier=Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
@@ -139,18 +153,18 @@ fun Friends(openDrawer:()->Unit)
 //            Default("Your Friends")
 //            Default("You have no friends!")
 //            //StartCommunity()
-            SimpleText7("Please Select a Friend to Add")
+            SimpleText7("Add a Friend!")
 
             // 'Set' onClickListener(?), for locating & adding friend? {crossed my mind}
 
-            AddFriend(" Added, as a Friend")
+            AddFriend(" Send Request to:")
             AddedFriendBox()
 
-            ConfirmFriendsUpdated("Confirm You've Finished Adding Friends")
-            UpdatedFriendsBox()
-            SubmitButton6()
+//            ConfirmFriendsUpdated("Confirm You've Finished Adding Friends")
+//            UpdatedFriendsBox()
+            //SubmitButton6()
 
-            SimpleText8("Please Save Your Profile Updates")
+            SimpleText8("Please Submit to Request")
             SubmitButton7()
         }
 

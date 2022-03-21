@@ -2,6 +2,7 @@ package com.example.project1_letsgov2
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -159,7 +160,7 @@ fun SubmitButton3() {
             .padding(30.dp)
             .width(150.dp)
             .clickable(onClick = {
-                context.startActivity(Intent(context, MainActivity::class.java))
+                Toast.makeText(context,"Password Successfully Reset!", Toast.LENGTH_LONG).show()
             })
     ) {
         Text(
