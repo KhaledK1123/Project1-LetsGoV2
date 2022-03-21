@@ -178,7 +178,7 @@ fun SubmitButton3() {
     }
 }
 
-/* (not needed, now: was part of initial setup idea >) @Composable
+/* (not needed, now: was part of initial setup idea - needed to revise it all >) @Composable
 fun saveProfileChanges()
 {
 

@@ -41,7 +41,7 @@ class DeleteAccount() : ComponentActivity() {
                 ConfirmDeleteAccount("Confirm Account Deletion")
                 DeleteAccountBox2()
 
-                /*  SubmitButton4() [not needed, now, after edits];
+                /*  SubmitButton4() [not needed, now, after edits]; where changes began, HERE;
                 Line 46: Felt more organized, with 2 sentences in 1 code line */
                 SimpleText5("Your Account has been deleted. We're Sorry to See You Go!")
                 SubmitButton5()
