@@ -102,7 +102,7 @@ fun LoginInput(user_name: String, password: String): String {
 
     var status: String = ""
 
-    if (user_name.equals("John") && password.equals("password")) {
+    if (user_name.equals("JohnDoe") && password.equals("password")) {
 
         status = ""
 
@@ -186,7 +186,7 @@ fun Login() {
 
         val context = LocalContext.current
         val backgroundColor = Color(0xFF2196F3)
-        if (usernameInput == ("John") && passwordInput == ("password")) {
+        if (usernameInput == ("JohnDoe") && passwordInput == ("password")) {
             Button(shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = backgroundColor),
                 modifier = Modifier
