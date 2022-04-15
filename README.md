@@ -1,6 +1,12 @@
 # Project1-LetsGoV2
-NEW
-![LoginPage](https://user-images.githubusercontent.com/42355971/163455203-a2550c76-fbc0-4860-a7a8-de929e44fc6c.PNG)
-![HomePage](https://user-images.githubusercontent.com/42355971/163455391-8fc30507-9b1c-4cc6-af6d-8820434d19ed.PNG)
-![ProfilePage](https://user-images.githubusercontent.com/42355971/163455574-e7008fc5-eade-4df3-8449-54bfbc234b97.PNG)
-![RequestItem](https://user-images.githubusercontent.com/42355971/163455644-315714e5-fa02-44d4-983d-3cf50f193f39.PNG)
+
+Project Description:
+LetsGo is a community-based application that embraces groups with similar qualities and
+ attributes, and allows users to create communities and events for members that align themselves
+ with said qualities, attributes and interests. Events that are created within communities of the
+ application aim to further integrate users with one another, embracing their shared ideals and
+ interests. LetsGo focuses on inclusion of users rather than exclusion; if a user does not fit into a
+ community, there will be others they can join, or they can create their own. Everyone has a place
+ within the LetsGo application, and no user will be left alone.
+
+Technologies Used:
