@@ -11,3 +11,14 @@
  within the LetsGo application, and no user will be left alone.
 
 ## Technologies Used:
+Tech 1 - Android Studio
+Tech 2 - Kotlin
+
+## Features:
+* Scrollable Item Card List
+* Navigation through Drawers
+
+## Contributors:
+Khaled Khalil
+Tyler Porter
+Kevin Weakley
